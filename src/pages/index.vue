@@ -68,7 +68,7 @@ export default {
     if (token) {
       localStorage.setItem('token', token)
     } else {
-      this.nonTokenModal = true
+      // this.nonTokenModal = true
     }
   }
 }
@@ -82,12 +82,12 @@ export default {
   border-radius: 16px
   line-height: 1.5
   .game-title
-    font-size: 3rem
+    font-size: 2.25rem
     font-weight: 900
     text-align: center
     color: #82d357
   .game-subtitle
-    font-size: 2rem
+    font-size: 1.5rem
     font-weight: 700
     text-align: center
 .game-cards
