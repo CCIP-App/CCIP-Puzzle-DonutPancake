@@ -124,6 +124,4 @@ export default {
   margin: 0 auto
   display: block
   margin-top: 16px
-  filter: invert(1)
-  opacity: .25
 </style>
