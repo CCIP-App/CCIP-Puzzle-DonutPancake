@@ -34,8 +34,10 @@ export default {
   background-color: #82d357
   position: fixed
   top: 0
-  width: 100%
   z-index: 1
+  width: 100%
+  @media (min-width: 1024px)
+    width: 512px
   .back
     display: flex
     align-items: center
