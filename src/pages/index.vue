@@ -20,7 +20,7 @@
         未偵測到 Token
       </template>
       <template #content>
-        請檢查 OPass 是否已成功登入，若持續無法登入，請聯絡工作人員。
+        請檢查 OPass 是否已成功報到，若持續發生此問題，請聯絡工作人員。
       </template>
       <template #actions>
         <a class="modal-action" @click="nonTokenModal = false">關閉</a>
