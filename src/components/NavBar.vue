@@ -1,11 +1,12 @@
 <template>
   <div class="nav-bar">
-    <router-link class="back" to="/">
+    <router-link class="back" to="/" v-if="!hideBack">
       <div class="icon">
         ◀️
       </div>
       返回
     </router-link>
+    <div v-if="hideBack"></div>
     <div class="title">
       {{ title }}
     </div>
@@ -19,6 +20,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    hideBack: {
+      type: Boolean,
+      default: false
     }
   }
 }
