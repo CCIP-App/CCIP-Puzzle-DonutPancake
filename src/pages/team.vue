@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar title="隊伍" />
+    <nav-bar title="夥伴" />
   </div>
 </template>
 

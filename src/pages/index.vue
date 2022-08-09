@@ -15,12 +15,24 @@
       </router-link>
     </div>
     <img src="/imgs/meow-puzzle.png" class="cat-bg" />
+    <modal v-model="nonTokenModal">
+      <template #title>
+        未偵測到 Token
+      </template>
+      <template #content>
+        請檢查 OPass 是否已成功登入，若持續無法登入，請聯絡工作人員。
+      </template>
+      <template #actions>
+        <a class="modal-action" @click="nonTokenModal = false">關閉</a>
+      </template>
+    </modal>
   </div>
 </template>
 <script>
 export default {
   data() {
     return ({
+      nonTokenModal: false,
       links: [
         {
           title: "遊戲方式",
@@ -38,7 +50,7 @@ export default {
           link: "/my-fragment"
         },
         {
-          title: "隊伍",
+          title: "夥伴",
           icon: "👥",
           link: "/team"
         },
@@ -49,6 +61,15 @@ export default {
         }
       ]
     })
+  },
+  created() {
+    // get token from url query
+    let token = this.$route.query.token
+    if (token) {
+      localStorage.setItem('token', token)
+    } else {
+      this.nonTokenModal = true
+    }
   }
 }
 </script>
@@ -61,7 +82,7 @@ export default {
   border-radius: 16px
   line-height: 1.5
   .game-title
-    font-size: 3.5rem
+    font-size: 3rem
     font-weight: 900
     text-align: center
     color: #82d357
@@ -89,13 +110,15 @@ export default {
     .game-card-icon
       font-size: 2rem
       text-align: center
-      width: 64px
       font-family: 'Noto Emoji', sans-serif
     &:hover
       background-color: #333
       color: #82d357
       border: 2px solid #82d357
       cursor: pointer
+      font-weight: 400
+      .game-card-icon
+        font-weight: 400
 .cat-bg
   width: 70%
   margin: 0 auto
