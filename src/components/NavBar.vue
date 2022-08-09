@@ -10,6 +10,7 @@
       {{ title }}
     </div>
   </div>
+  <div style="height: 60px;" />
 </template>
 
 <script>
@@ -31,6 +32,10 @@ export default {
   grid-template-columns: 1fr 3fr 1fr
   margin: 0 -16px
   background-color: #82d357
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 1
   .back
     display: flex
     align-items: center
