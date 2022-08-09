@@ -1,5 +1,4 @@
 import { ViteSSG } from 'vite-ssg'
-import 'normalize.css'
 import './style.sass'
 import App from './App.vue'
 import defaultLayout from './Layout.vue'
