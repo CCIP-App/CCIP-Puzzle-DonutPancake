@@ -6,21 +6,10 @@
         程式碼碎片
       </div>
       <div class="rule-card-description">
-        在入場時會獲得兩個程式碼碎片，可以在「我的碎片」中檢視，使用碎片解開所有題目後可兌換獎品。
+        在報到時會獲得兩個程式碼碎片，可以在「我的碎片」中檢視。
       </div>
       <div class="rule-card-img">
         <img src="/imgs/rule-puzzle.png" />
-      </div>
-    </div>
-    <div class="rule-card">
-      <div class="rule-card-title">
-        尋找夥伴
-      </div>
-      <div class="rule-card-description">
-        你可以尋找持有不同碎片的夥伴，透過兩人持有的碎片，一起解開題目。
-      </div>
-      <div class="rule-card-img">
-        <img src="/imgs/rule-team.png" />
       </div>
     </div>
     <div class="rule-card">
@@ -39,6 +28,17 @@
       </div>
       <div class="rule-card-img">
         <img src="/imgs/rule-booth.png" />
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-card-title">
+        尋找夥伴
+      </div>
+      <div class="rule-card-description">
+        你可以尋找持有不同碎片的夥伴，透過兩人持有的碎片，一起解開題目。
+      </div>
+      <div class="rule-card-img">
+        <img src="/imgs/rule-team.png" />
       </div>
     </div>
     <div class="rule-card">
