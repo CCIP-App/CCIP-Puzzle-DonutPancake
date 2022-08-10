@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-view-container">
     <div class="mobile-view">
-      <nav-bar title="大地遊戲攤位掃描器" hide-back />
+      <nav-bar title="攤位掃描器" hide-back />
       <qr-stream @decode="onDecode" class="qrstream">
         <div>
           <div style="color: red;" class="frame"></div>
@@ -51,9 +51,9 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)
     width: 512px
 .qrstream
-  width: 100%
-  height: calc(100vh - 60px)
-  height: calc(100dvh - 60px)
+  width: 100% !important
+  height: calc(100vh - 60px) !important
+  height: calc(100dvh - 60px) !important
   position: relative
   .frame
     position: absolute
