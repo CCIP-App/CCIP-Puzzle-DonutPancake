@@ -61,6 +61,7 @@ export default {
         font-family: 'Noto Emoji', sans-serif
         border-radius: 50em
         padding: 4px 24px
+        transition: transform 0.2s ease-in-out
       .bottom-navigation-title
         font-size: 12px
         margin-top: 4px
@@ -68,6 +69,9 @@ export default {
         opacity: 1
         .bottom-navigation-icon
           background-color: rgba(255,255,255,0.2)
+      &:active
+        .bottom-navigation-icon
+          transform: scale(.9)
       &.router-link-exact-active
         opacity: 1
         .bottom-navigation-icon
@@ -76,4 +80,5 @@ export default {
           text-align: center
         .bottom-navigation-title
           font-weight: 700
+          color: #82d357
 </style>
