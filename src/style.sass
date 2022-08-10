@@ -7,10 +7,25 @@
 body,html
   font-family: 'Noto Sans TC', sans-serif
 ul
-  margin: 0.5em 0
+  margin: 0
   padding-left: 1em
 .card
   border: 2px solid #82d357
   border-radius: 8px
   padding: 16px
   margin: 16px 0
+  .card-title
+    font-size: 1.5rem
+    font-weight: 700
+    margin-bottom: 8px
+  .card-description
+    line-height: 1.5
+    opacity: 0.75
+  img
+    width: 50%
+    display: block
+    margin: 0 auto
+  .card-description + img
+    margin-top: 8px
+  img + .card-description
+    margin-top: 8px
