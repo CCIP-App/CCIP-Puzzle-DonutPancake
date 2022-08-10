@@ -81,8 +81,9 @@
     font-size: 24px
     font-weight: 700
     text-align: center
-    background-color: rgba(0, 0, 0, 0.7)
+    background-color: #82d357
     padding: 8px
+    opacity: .75
 @keyframes blink
   0%,100%
     opacity: 0.5
