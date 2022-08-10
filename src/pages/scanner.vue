@@ -133,7 +133,10 @@ export default {
       if (content) {
         // play beep
         this.$refs.beep.play()
-
+        // vibration
+        if (navigator.vibrate) {
+          navigator.vibrate(10)
+        }
 
         console.log(content)
         let token = this.$route.query.token
