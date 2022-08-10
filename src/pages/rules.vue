@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar title="遊戲方式" />
-    <div class="rule-card">
+    <div class="rule-card card">
       <div class="rule-card-title">
         程式碼碎片
       </div>
@@ -12,7 +12,7 @@
         <img src="/imgs/rule-puzzle.png" />
       </div>
     </div>
-    <div class="rule-card">
+    <div class="rule-card card">
       <div class="rule-card-title">
         取得更多碎片
       </div>
@@ -35,7 +35,7 @@
         <img src="/imgs/rule-booth.png" />
       </div>
     </div>
-    <div class="rule-card">
+    <div class="rule-card card">
       <div class="rule-card-title">
         尋找夥伴
       </div>
@@ -46,7 +46,7 @@
         <img src="/imgs/rule-team.png" />
       </div>
     </div>
-    <div class="rule-card">
+    <div class="rule-card card">
       <div class="rule-card-title">
         不可重複使用
       </div>
@@ -57,7 +57,7 @@
         <img src="/imgs/rule-reuse.png" />
       </div>
     </div>
-    <div class="rule-card">
+    <div class="rule-card card">
       <div class="rule-card-title">
         兌獎方式
       </div>
@@ -85,10 +85,6 @@ export default {
 
 <style lang="sass" scoped>
 .rule-card
-  border: 2px solid #82d357
-  border-radius: 8px
-  padding: 16px
-  margin: 16px 0
   .rule-card-title
     font-size: 1.5rem
     font-weight: 700
