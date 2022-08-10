@@ -55,7 +55,7 @@
     width: 512px
 .qrstream
   width: 100% !important
-  height: calc(100vh - 60px) !important
+  height: calc(var(--vh,1vh) * 100 - 60px) !important
   height: calc(100dvh - 60px) !important
   position: relative
   .frame
@@ -109,6 +109,9 @@ export default {
   },
   created() {
     this.checkToken()
+    // set --vh
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   },
   methods: {
     async checkToken() {
