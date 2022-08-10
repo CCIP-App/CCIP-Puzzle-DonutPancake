@@ -53,11 +53,6 @@ export default {
           title: "夥伴",
           icon: "👥",
           link: "/team"
-        },
-        {
-          title: "獎項",
-          icon: "🏆",
-          link: "/prize"
         }
       ]
     })
