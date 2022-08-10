@@ -77,7 +77,7 @@
     right: 0
     bottom: 0
     margin: auto
-    color: #fff
+    color: #333
     font-size: 24px
     font-weight: 700
     text-align: center
