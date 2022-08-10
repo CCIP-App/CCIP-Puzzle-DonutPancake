@@ -1,18 +1,13 @@
 <template>
-  <div style="padding: 16px 0;">
-    <div class="game-header">
-      <div class="game-title" data-shadow="程式碼拼圖">程式碼拼圖</div>
-      <div class="game-subtitle" data-shadow="SITCON X 大地遊戲">SITCON X 大地遊戲</div>
+  <div>
+    <h1>碎片</h1>
+    <div class="card " v-if="!puzzles">
+      <loader />
     </div>
-    <div class="game-cards">
-      <router-link class="game-card" v-for="link of links" :key="link.link" :to="link.link">
-        <div class="game-card-title">
-          {{ link.title }}
-        </div>
-        <div class="game-card-icon">
-          {{ link.icon }}
-        </div>
-      </router-link>
+    <div class="card puzzle-cards" v-else-if="puzzles.length">
+      <div class="puzzle-card" v-for="puzzle of puzzles" :key="puzzle">
+        {{ puzzle }}
+      </div>
     </div>
     <img src="/imgs/meow-puzzle.png" class="cat-bg" />
     <modal v-model="nonTokenModal">
@@ -39,66 +34,42 @@ export default {
           icon: "👥",
           link: "/team"
         }
-      ]
+      ],
+      puzzles: null
     })
   },
   created() {
     // get token from url query
-    let token = this.$route.query.token
+    let token = this.$route.query.token || localStorage.getItem('token')
     if (token) {
       localStorage.setItem('token', token)
+      this.getPuzzles()
     } else {
-      // this.nonTokenModal = true
+      this.nonTokenModal = true
+      this.puzzles = []
+    }
+  },
+  methods: {
+    async getPuzzles() {
+      let token = localStorage.getItem('token')
+      let result = await fetch(`https://sitcon.opass.app/event/puzzle?token=${token}`).then(res => res.json())
+      this.puzzles = result.puzzles
     }
   }
 }
 </script>
 <style lang="sass" scoped>
-.game-header
-  padding: 64px 0
-  border: 2px solid #82d357
-  padding: 16px
-  margin-bottom: 16px
-  border-radius: 16px
-  line-height: 1.5
-  .game-title
-    font-size: 2.25rem
-    font-weight: 900
-    text-align: center
-    color: #82d357
-  .game-subtitle
-    font-size: 1.5rem
-    font-weight: 700
-    text-align: center
-.game-cards
+.puzzle-cards
   display: grid
-  grid-template-columns: repeat(2,1fr)
-  grid-gap: 16px
-  .game-card
+  grid-template-columns: repeat(2, 1fr)
+  gap: 8px
+  .puzzle-card
+    color: #333
     background-color: #82d357
     border: 2px solid #82d357
-    color: #333
-    font-weight: 700
-    font-size: 1.5rem
-    border-radius: 16px
-    padding: 16px
-    display: flex
-    align-items: center
-    text-decoration: none
-    .game-card-title
-      flex: 1
-    .game-card-icon
-      font-size: 2rem
-      text-align: center
-      font-family: 'Noto Emoji', sans-serif
-    &:hover
-      background-color: #333
-      color: #82d357
-      border: 2px solid #82d357
-      cursor: pointer
-      font-weight: 400
-      .game-card-icon
-        font-weight: 400
+    border-radius: 4px
+    padding: 8px
+    font-family: 'Ubuntu Mono', 'Noto Sans TC', monospace
 .cat-bg
   width: 70%
   margin: 0 auto
