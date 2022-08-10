@@ -49,7 +49,7 @@
       <div class="card-description">
         碎片不可被重複使用，若你需要使用兩次相同的碎片，則需持有兩個相同的碎片。
       </div>
-      <img src="/imgs/rule-reuse.png" />
+      <img src="/imgs/rule-reuse.svg" />
     </div>
     <div class="card">
       <div class="card-title">
