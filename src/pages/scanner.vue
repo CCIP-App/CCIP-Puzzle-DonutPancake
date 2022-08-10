@@ -30,6 +30,9 @@
           <a class="modal-action" @click="nonTokenModal = false">關閉</a>
         </template>
       </modal>
+      <audio id="beep" ref="beep" style="display: none;">
+        <source src="/sounds/alert.wav" type="audio/ogg">
+      </audio>
     </div>
   </div>
 </template>
@@ -128,6 +131,10 @@ export default {
     },
     async onDecode(content) {
       if (content) {
+        // play beep
+        this.$refs.beep.play()
+
+
         console.log(content)
         let token = this.$route.query.token
         // post https://sitcon.opass.app/event/puzzle/deliverer?token=${token}
