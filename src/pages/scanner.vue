@@ -44,7 +44,7 @@
 .mobile-view
   width: 100%
   margin: 0 auto
-  height: 100vh
+  height: calc(var(--vh,1vh) * 100)
   height: 100dvh
   background-color: #333
   color: #fff
