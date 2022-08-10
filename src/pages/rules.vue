@@ -14,16 +14,21 @@
     </div>
     <div class="rule-card">
       <div class="rule-card-title">
-        獲得更多碎片
+        取得更多碎片
       </div>
       <div class="rule-card-description">
         在工作人員掃描你的票券 QR Code 後即可獲得隨機碎片，你可以透過走訪攤位、參與十週年回憶展或是參加開放式議程「專案家家酒」來獲得碎片。 <br />
         <small>
-          * 每個攤位只能獲得一次碎片。
-        </small>
-        <br />
-        <small>
-          * 參與開放式議程「專案家家酒」，事前已提供專案展出者會額外獲得兩個碎片，現場參與互動討論者可以獲得一個碎片。
+          <ul>
+            <li>每個攤位只能獲得一次碎片。</li>
+            <li>
+              開放式議程「專案家家酒」碎片獲得方式如下：
+              <ul>
+                <li>事前已提供專案展出者可獲得兩個碎片。</li>
+                <li>現場參與互動討論者可獲得一個碎片。</li>
+              </ul>
+            </li>
+          </ul>
         </small>
       </div>
       <div class="rule-card-img">
@@ -58,6 +63,11 @@
       </div>
       <div class="rule-card-description">
         成功解開所有題目後，可至服務台兌換限量獎品，並獲得抽獎券，屆時將會在閉幕式抽出得獎者。
+        <small>
+          <ul>
+            <li>獎品數量有限，先到先得。</li>
+          </ul>
+        </small>
       </div>
       <div class="rule-card-img">
         <img src="/imgs/rule-gifts.png" />
