@@ -1,9 +1,9 @@
 <template>
   <div>
-    <nav-bar title="題目" />
+    <h1>題目</h1>
     <div class="card">
       <div class="card-title">
-        題目
+        介紹
       </div>
       <div class="card-description">
         題目內容包含了輸入和輸出兩個部分，請嘗試找出兩者的規律，以手中的碎片拼湊出程式碼來解開題目吧！

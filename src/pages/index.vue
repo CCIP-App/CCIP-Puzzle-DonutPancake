@@ -35,21 +35,6 @@ export default {
       nonTokenModal: false,
       links: [
         {
-          title: "遊戲方式",
-          icon: "🎮",
-          link: "/rules"
-        },
-        {
-          title: "題目",
-          icon: "📝",
-          link: "/problem"
-        },
-        {
-          title: "我的碎片",
-          icon: "🧩",
-          link: "/my-fragment"
-        },
-        {
           title: "夥伴",
           icon: "👥",
           link: "/team"
@@ -87,7 +72,7 @@ export default {
     text-align: center
 .game-cards
   display: grid
-  grid-template-columns: repeat(1,1fr)
+  grid-template-columns: repeat(2,1fr)
   grid-gap: 16px
   .game-card
     background-color: #82d357

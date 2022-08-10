@@ -1,12 +1,12 @@
 <template>
   <div>
-    <nav-bar title="遊戲方式" />
+    <h1>遊戲方式</h1>
     <div class="card">
       <div class="card-title">
         程式碼碎片
       </div>
       <div class="card-description">
-        在報到時會獲得兩個程式碼碎片，可以在「我的碎片」中檢視。
+        在報到時會獲得兩個程式碼碎片，可以在「碎片」頁面中檢視。
       </div>
       <img src="/imgs/rule-puzzle.png" />
     </div>
@@ -23,7 +23,7 @@
           <ul>
             <li>每個攤位只能獲得一次碎片。</li>
             <li>
-              開放式議程「專案家家酒」碎片獲得方式如下：
+              開放式議程「專案家家酒」碎片取得方式如下：
               <ul>
                 <li>事前已提供專案展出者可獲得兩個碎片。</li>
                 <li>現場參與互動討論者可獲得一個碎片。</li>

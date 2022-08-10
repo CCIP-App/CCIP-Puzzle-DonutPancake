@@ -6,6 +6,7 @@
         SITCON X 大地遊戲 | <a href="https://github.com/CCIP-App/CCIP-Puzzle-DonutPancake" target="_blank">GitHub</a>
       </div>
     </div>
+    <bottom-navigation />
   </div>
 </template>
 
@@ -23,11 +24,13 @@ export default {
 .mobile-view
   width: 100%
   margin: 0 auto
-  min-height: 100vh
-  min-height: 100dvh
+  height: calc(100vh - 64px)
+  height: calc(100dvh - 64px)
   background-color: #333
   color: #fff
   padding: 0 16px
+  overflow: hidden
+  overflow-y: scroll
   @media (min-width: 1024px)
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)
     width: 512px
