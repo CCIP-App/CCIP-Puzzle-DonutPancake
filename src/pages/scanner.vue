@@ -112,6 +112,8 @@ export default {
     // set --vh
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    // set theme-color to #82d357
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#82d357');
   },
   methods: {
     async checkToken() {
