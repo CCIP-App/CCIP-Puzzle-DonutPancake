@@ -12,7 +12,7 @@
     <img src="/imgs/meow-puzzle.png" class="cat-bg" />
     <modal v-model="nonTokenModal">
       <template #title>
-        未偵測到 Token
+        Token 無效
       </template>
       <template #content>
         請檢查 OPass 是否已成功報到，若持續發生此問題，請聯絡工作人員。
@@ -52,8 +52,14 @@ export default {
   methods: {
     async getPuzzles() {
       let token = localStorage.getItem('token')
-      let result = await fetch(`https://sitcon.opass.app/event/puzzle?token=${token}`).then(res => res.json())
-      this.puzzles = result.puzzles
+      let result = await fetch(`https://sitcon.opass.app/event/puzzle?token=${token}`)
+      if (result.ok) {
+        result = await result.json()
+        this.puzzles = result.puzzles
+      } else {
+        this.nonTokenModal = true
+        this.puzzles = []
+      }
     }
   }
 }

@@ -1,9 +1,7 @@
 <template>
   <div class="mobile-view-container">
     <div class="mobile-view">
-      <client-only>
-        <router-view />
-      </client-only>
+      <router-view />
     </div>
     <bottom-navigation />
   </div>

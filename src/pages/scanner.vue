@@ -1,40 +1,37 @@
 <template>
-  <client-only>
-    <div class="mobile-view-container">
-      <div class="mobile-view">
-        <nav-bar title="大地遊戲攤位掃描器" hide-back />
-        <qr-stream @decode="onDecode" class="qrstream">
-          <div>
-
-            <div style="color: red;" class="frame"></div>
-            <div class="display-name">{{ displayName }}</div>
-          </div>
-        </qr-stream>
-        <modal v-model="nonTokenModal">
-          <template #title>
-            未偵測到 Token
-          </template>
-          <template #content>
-            請檢查連結是否有缺漏，若持續發生此問題，請聯絡工作人員。
-          </template>
-          <template #actions>
-            <a class="modal-action" @click="nonTokenModal = false">關閉</a>
-          </template>
-        </modal>
-        <modal v-model="tokenInvalidModal">
-          <template #title>
-            Token 無效
-          </template>
-          <template #content>
-            請檢查連結是否有缺漏，若持續發生此問題，請聯絡工作人員。
-          </template>
-          <template #actions>
-            <a class="modal-action" @click="nonTokenModal = false">關閉</a>
-          </template>
-        </modal>
-      </div>
+  <div class="mobile-view-container">
+    <div class="mobile-view">
+      <nav-bar title="大地遊戲攤位掃描器" hide-back />
+      <qr-stream @decode="onDecode" class="qrstream">
+        <div>
+          <div style="color: red;" class="frame"></div>
+          <div class="display-name">{{ displayName }}</div>
+        </div>
+      </qr-stream>
+      <modal v-model="nonTokenModal">
+        <template #title>
+          未偵測到 Token
+        </template>
+        <template #content>
+          請檢查連結是否有缺漏，若持續發生此問題，請聯絡工作人員。
+        </template>
+        <template #actions>
+          <a class="modal-action" @click="nonTokenModal = false">關閉</a>
+        </template>
+      </modal>
+      <modal v-model="tokenInvalidModal">
+        <template #title>
+          Token 無效
+        </template>
+        <template #content>
+          請檢查連結是否有缺漏，若持續發生此問題，請聯絡工作人員。
+        </template>
+        <template #actions>
+          <a class="modal-action" @click="nonTokenModal = false">關閉</a>
+        </template>
+      </modal>
     </div>
-  </client-only>
+  </div>
 </template>
 
 <style lang="sass" scoped>
@@ -90,15 +87,15 @@
     opacity: 1
 </style>
 <script>
-import qrReader from 'vue3-qr-reader';
-import Toast from "vue-toastification";
+import { QrStream } from 'vue3-qr-reader';
+import { useToast } from "vue-toastification";
 export default {
   setup() {
-    const toast = Toast.useToast();
+    const toast = useToast();
     return { toast }
   },
   components: {
-    QrStream: qrReader.QrStream,
+    QrStream,
   },
   data() {
     return ({
