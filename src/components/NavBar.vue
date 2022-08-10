@@ -11,7 +11,6 @@
       {{ title }}
     </div>
   </div>
-  <div style="height: 60px;" />
 </template>
 
 <script>
@@ -35,12 +34,9 @@ export default {
   align-items: center
   padding: 16px
   grid-template-columns: 1fr 3fr 1fr
-  margin: 0 -16px
   background-color: #82d357
-  position: fixed
-  top: 0
-  z-index: 1
-  width: 100%
+  width: 100vw
+  height: 60px
   @media (min-width: 1024px)
     width: 512px
   .back

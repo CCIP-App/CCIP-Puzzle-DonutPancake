@@ -1,13 +1,18 @@
 import { ViteSSG } from 'vite-ssg'
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 import './style.sass'
 import App from './App.vue'
-import defaultLayout from './Layout.vue'
+import defaultLayout from './layouts/default.vue'
 export const createApp = ViteSSG(
   // the root component
   App,
   // vue-router options
   {
     routes: [{
+      path: '/scanner',
+      component: () => import('./pages/scanner.vue')
+    }, {
       path: '/',
       component: defaultLayout,
       children: Object.entries(import.meta.glob('./pages/*.vue')).map(
@@ -37,5 +42,6 @@ export const createApp = ViteSSG(
   // function to have custom setups
   ({ app, router, routes, isClient, initialState }) => {
     // install plugins etc.
+    app.use(Toast);
   },
 )
