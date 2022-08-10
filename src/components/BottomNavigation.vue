@@ -56,6 +56,9 @@ export default {
       flex-direction: column
       justify-content: center
       align-items: center
+      // disable tap highlight
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+
       .bottom-navigation-icon
         font-size: 24px
         font-family: 'Noto Emoji', sans-serif
