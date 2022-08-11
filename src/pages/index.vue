@@ -31,7 +31,7 @@
     </modal>
     <modal v-model="historyModal">
       <template #title>
-        攤位碎片取得紀錄
+        碎片取得紀錄
       </template>
       <template #content>
         <div class="history-cards">
@@ -52,11 +52,9 @@
               }}
             </div>
           </div>
-          <div class="history-card" v-if="!deliverers.length">
-            <div class="history-card-name">
-              暫無紀錄
-            </div>
-          </div>
+        </div>
+        <div v-if="!deliverers?.length">
+          暫無紀錄
         </div>
       </template>
       <template #actions>
