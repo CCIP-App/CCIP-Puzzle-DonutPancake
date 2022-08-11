@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="title-bar">
-
       <h1>碎片</h1>
       <div class="actions">
         <div class="icon-btn" @click="historyModal = true">

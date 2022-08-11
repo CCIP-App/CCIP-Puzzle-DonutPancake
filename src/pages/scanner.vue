@@ -155,7 +155,8 @@ export default {
         })
         if (res.ok) {
           res = await res.json()
-          this.toast.success(`已成功發送碎片！`)
+          let { user_id } = res
+          this.toast.success(`已成功發送給「${user_id}」`)
         } else {
           res = await res.json()
           if (res.message == 'Already take from this deliverer') {
