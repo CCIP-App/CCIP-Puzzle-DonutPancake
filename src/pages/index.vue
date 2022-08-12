@@ -66,15 +66,15 @@
             <div class="step-icon">
               <i class='bx bx-copy'></i>
             </div>
-            <div class="step-title">複製網址</div>
-            <div class="step-description">開啟夥伴的大地遊戲頁面，輕觸碎片頁面右上角的複製按鈕。</div>
+            <div class="step-title">1. 複製連結</div>
+            <div class="step-description">開啟夥伴的碎片頁面，輕觸右上角的複製按鈕。</div>
           </div>
           <div class="add-partner-step">
             <div class="step-icon">
               <i class='bx bx-paste'></i>
             </div>
-            <div class="step-title">貼上網址</div>
-            <div class="step-description">透過通訊軟體等方式，取得夥伴的連結貼至下方輸入欄中，並按下確定。</div>
+            <div class="step-title">2. 貼上連結</div>
+            <div class="step-description">透過通訊軟體等方式，取得夥伴的連結貼至下方欄位，並按下確定。</div>
           </div>
         </div>
         <input class="input" v-model="partnerToken" placeholder="請輸入夥伴的連結" />
@@ -196,22 +196,22 @@ export default {
       let token = localStorage.getItem('token')
       try {
         navigator.clipboard.writeText(`https://puzzle.sitcon.party/?token=${token}`)
-        this.toast.success('網址複製成功！')
+        this.toast.success('連結複製成功！')
       } catch (e) {
-        window.prompt("請複製以下網址", `https://puzzle.sitcon.party/?token=${token}`)
+        window.prompt("請複製以下連結", `https://puzzle.sitcon.party/?token=${token}`)
       }
     },
     async addPartner() {
       let partnerTokenURL = this.partnerToken
       if (!partnerTokenURL.startsWith('https://puzzle.sitcon.party/?token=')) {
-        this.toast.error('糟糕，你輸入的似乎不是正確的網址！')
+        this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
         return
       }
       partnerTokenURL = new URL(partnerTokenURL)
 
       let partnerToken = partnerTokenURL.searchParams.get('token')
       if (!partnerToken) {
-        this.toast.error('糟糕，你輸入的似乎不是正確的網址！')
+        this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
         return
       }
 
@@ -224,7 +224,7 @@ export default {
           this.addPartnerModal = false
           this.toast.success('成功加入夥伴！')
         } else {
-          this.toast.error('糟糕，你輸入的似乎不是正確的網址！')
+          this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
         }
       } else {
         this.toast.error('好像沒辦法將自己加入為夥伴。 (；′⌒`)')
