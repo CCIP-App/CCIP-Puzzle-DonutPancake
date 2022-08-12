@@ -7,7 +7,7 @@
           <i class='bx bx-copy'></i>
         </div>
         <div class="icon-btn" @click="historyModal = true">
-          📜
+          <i class='bx bx-history'></i>
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="card puzzle-cards" v-else-if="puzzles.length">
       <div class="puzzle-card" v-for="puzzle of puzzles" :key="puzzle">
-        {{ puzzle }}
+        {{ puzzleList[puzzle] }}
       </div>
     </div>
     <img src="/imgs/meow-puzzle.png" class="cat-bg" />
@@ -66,6 +66,7 @@
   </div>
 </template>
 <script>
+import puzzleList from '@/assets/puzzles.json'
 import { useToast } from "vue-toastification";
 export default {
   setup() {
@@ -74,6 +75,7 @@ export default {
   },
   data() {
     return ({
+      puzzleList,
       nonTokenModal: false,
       historyModal: false,
       puzzles: null,
