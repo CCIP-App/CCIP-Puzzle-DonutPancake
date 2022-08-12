@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <h2>你的碎片</h2>
+    <h2 v-if="hasPartner">你的碎片</h2>
     <div class="card" v-if="!puzzles">
       <loader />
     </div>
@@ -81,6 +81,9 @@
         <div class="input-description">
           <span v-if="hasPartner">
             你先前已新增其他夥伴，與新的夥伴踏上旅程的話，先前的夥伴將會被取代。
+          </span>
+          <span>
+            與夥伴踏上旅程的話，可以使用對方的碎片進行解題。
           </span>
         </div>
       </template>
