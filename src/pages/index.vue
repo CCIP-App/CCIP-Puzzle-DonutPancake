@@ -11,13 +11,33 @@
         </div>
       </div>
     </div>
-    <div class="card " v-if="!puzzles">
+    <h2>你的碎片</h2>
+    <div class="card" v-if="!puzzles">
       <loader />
     </div>
     <div class="card puzzle-cards" v-else-if="puzzles.length">
       <div class="puzzle-card" v-for="puzzle of puzzles" :key="puzzle">
         {{ puzzleList[puzzle] }}
       </div>
+    </div>
+    <h2 v-if="hasPartner">夥伴的碎片</h2>
+    <div class="card" v-if="hasPartner && !partnerPuzzles">
+      <loader />
+    </div>
+    <div class="card puzzle-cards" v-else-if="hasPartner && partnerPuzzles?.length">
+      <div class="puzzle-card" v-for="puzzle of partnerPuzzles" :key="puzzle">
+        {{ puzzleList[puzzle] }}
+      </div>
+    </div>
+    <div class="add-partner-btn" @click="addPartnerModal = true">
+      <span v-if="hasPartner">
+        <i class='bx bx-refresh'></i>
+        <span>更換夥伴</span>
+      </span>
+      <span v-else>
+        <i class='bx bx-plus'></i>
+        <span>加入夥伴</span>
+      </span>
     </div>
     <img src="/imgs/meow-puzzle.png" class="cat-bg" />
     <modal v-model="nonTokenModal">
@@ -29,6 +49,44 @@
       </template>
       <template #actions>
         <a class="modal-action" @click="nonTokenModal = false">關閉</a>
+      </template>
+    </modal>
+    <modal v-model="addPartnerModal">
+      <template #title>
+        <span v-if="hasPartner">
+          更換夥伴
+        </span>
+        <span v-else>
+          加入夥伴
+        </span>
+      </template>
+      <template #content>
+        <div class="add-partner-steps">
+          <div class="add-partner-step">
+            <div class="step-icon">
+              <i class='bx bx-copy'></i>
+            </div>
+            <div class="step-title">複製網址</div>
+            <div class="step-description">開啟夥伴的大地遊戲頁面，輕觸碎片頁面右上角的複製按鈕。</div>
+          </div>
+          <div class="add-partner-step">
+            <div class="step-icon">
+              <i class='bx bx-paste'></i>
+            </div>
+            <div class="step-title">貼上網址</div>
+            <div class="step-description">透過通訊軟體等方式，取得夥伴的連結並貼至下方輸入欄中，並按下確定。</div>
+          </div>
+        </div>
+        <input class="input" v-model="partnerToken" placeholder="請輸入夥伴的連結" />
+        <div class="input-description">
+          <span v-if="hasPartner">
+            你先前已新增其他夥伴，與新的夥伴踏上旅程的話，先前的夥伴將會被取代。
+          </span>
+        </div>
+      </template>
+      <template #actions>
+        <a class="modal-action" @click="addPartnerModal = false">取消</a>
+        <a class="modal-action primary" @click="addPartner">確定</a>
       </template>
     </modal>
     <modal v-model="historyModal">
@@ -78,35 +136,57 @@ export default {
       puzzleList,
       nonTokenModal: false,
       historyModal: false,
+      addPartnerModal: false,
+      partnerToken: '',
+      hasPartner: false,
       puzzles: null,
+      partnerPuzzles: null,
       deliverers: null
     })
   },
-  created() {
+  async created() {
     // get token from url query
     let token = this.$route.query.token || localStorage.getItem('token')
+    let partnerToken = localStorage.getItem('partnerToken')
     if (token) {
       localStorage.setItem('token', token)
-      this.getPuzzles()
-    } else {
-      this.nonTokenModal = true
-      this.puzzles = []
-    }
-  },
-  methods: {
-    async getPuzzles() {
-      let token = localStorage.getItem('token')
-      let result = await fetch(`https://sitcon.opass.app/event/puzzle?token=${token}`)
-      if (result.ok) {
-        result = await result.json()
-        this.puzzles = result.puzzles
-        // sort by timestamp reverse
-        this.deliverers = result.deliverers.sort((a, b) => b.timestamp - a.timestamp)
+      let res = await this.getPuzzles(token)
+      if (res) {
+        this.puzzles = res.puzzles
+        this.deliverers = res.deliverers
       } else {
         this.nonTokenModal = true
         this.puzzles = []
         this.deliverers = []
       }
+    } else {
+      this.nonTokenModal = true
+      this.puzzles = []
+      this.deliverers = []
+    }
+    if (partnerToken) {
+      this.hasPartner = true
+      let res = await this.getPuzzles(partnerToken)
+      if (res) {
+        this.partnerPuzzles = res.puzzles
+      } else {
+        // partner token is invalid
+        this.hasPartner = false
+        localStorage.removeItem('partnerToken')
+        this.toast.error('無法取得夥伴的碎片，請重新加入夥伴。')
+        this.partnerPuzzles = []
+      }
+    }
+  },
+  methods: {
+    async getPuzzles(token) {
+      let result = await fetch(`https://sitcon.opass.app/event/puzzle?token=${token}`)
+      if (result.ok) {
+        result = await result.json()
+        result.deliverers = result.deliverers.sort((a, b) => b.timestamp - a.timestamp)
+        return result
+      }
+      return null
     },
     copyTokenURL() {
       let token = localStorage.getItem('token')
@@ -115,6 +195,35 @@ export default {
         this.toast.success('已複製網址，請分享給夥伴貼上！')
       } catch (e) {
         window.prompt("請複製以下網址", `https://puzzle.sitcon.party/?token=${token}`)
+      }
+    },
+    async addPartner() {
+      let partnerTokenURL = this.partnerToken
+      if (!partnerTokenURL.startsWith('https://puzzle.sitcon.party/?token=')) {
+        this.toast.error('糟糕，你輸入的似乎不是正確的網址！')
+        return
+      }
+      partnerTokenURL = new URL(partnerTokenURL)
+
+      let partnerToken = partnerTokenURL.searchParams.get('token')
+      if (!partnerToken) {
+        this.toast.error('糟糕，你輸入的似乎不是正確的網址！')
+        return
+      }
+
+      let selfToken = this.$route.query.token || localStorage.getItem('token')
+      if (partnerToken != selfToken) {
+        let res = await this.getPuzzles(partnerToken)
+        if (res) {
+          localStorage.setItem('partnerToken', partnerToken)
+          this.hasPartner = true
+          this.addPartnerModal = false
+          this.toast.success('成功加入夥伴！')
+        } else {
+          this.toast.error('糟糕，你輸入的似乎不是正確的網址！')
+        }
+      } else {
+        this.toast.error('好像沒辦法將自己加入為夥伴。 (；′⌒`)')
       }
     }
   }
@@ -145,6 +254,41 @@ export default {
       margin-top: 4px
       border-top: 1px solid rgba(255, 255, 255, .05)
       padding-top: 4px
+.add-partner-btn
+  display: flex
+  align-items: center
+  justify-content: center
+  color: #333
+  background-color: #82d357
+  border: 2px solid #82d357
+  border-radius: 4px
+  padding: 8px
+  font-family: 'Noto Sans TC', monospace
+  cursor: pointer
+  transition: all .2s ease-in-out
+  &:hover
+    background-color: #6dbb4a
+    border: 2px solid #6dbb4a
+  i
+    margin-right: 4px
+.add-partner-steps
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 8px
+  margin-bottom: 8px
+  .add-partner-step
+    background-color: #222
+    padding: 6px 12px
+    border-radius: 6px
+    border: 1px solid rgba(255,255,255,.1)
+    box-shadow: 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.1)
+    .step-icon
+      font-size: 24px
+    .step-title
+      font-weight: 700
+    .step-description
+      font-size: .8rem
+      opacity: .75
 .cat-bg
   width: 70%
   margin: 0 auto

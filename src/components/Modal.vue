@@ -75,8 +75,6 @@
   transition: opacity 0.3s
 .modal-enter, .modal-leave-to
   opacity: 0
-
-
 </style>
 <script>
 export default {
