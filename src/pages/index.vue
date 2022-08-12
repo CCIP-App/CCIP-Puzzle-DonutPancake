@@ -3,6 +3,9 @@
     <div class="title-bar">
       <h1>碎片</h1>
       <div class="actions">
+        <div class="icon-btn" @click="copyTokenURL">
+          <i class='bx bx-copy'></i>
+        </div>
         <div class="icon-btn" @click="historyModal = true">
           📜
         </div>
@@ -63,7 +66,12 @@
   </div>
 </template>
 <script>
+import { useToast } from "vue-toastification";
 export default {
+  setup() {
+    const toast = useToast();
+    return { toast }
+  },
   data() {
     return ({
       nonTokenModal: false,
@@ -96,6 +104,15 @@ export default {
         this.nonTokenModal = true
         this.puzzles = []
         this.deliverers = []
+      }
+    },
+    copyTokenURL() {
+      let token = localStorage.getItem('token')
+      try {
+        navigator.clipboard.writeText(`https://puzzle.sitcon.party/?token=${token}`)
+        this.toast.success('已複製網址，請分享給夥伴貼上！')
+      } catch (e) {
+        window.prompt("請複製以下網址", `https://puzzle.sitcon.party/?token=${token}`)
       }
     }
   }
