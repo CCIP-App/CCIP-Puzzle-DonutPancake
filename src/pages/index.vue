@@ -74,7 +74,7 @@
               <i class='bx bx-paste'></i>
             </div>
             <div class="step-title">貼上網址</div>
-            <div class="step-description">透過通訊軟體等方式，取得夥伴的連結並貼至下方輸入欄中，並按下確定。</div>
+            <div class="step-description">透過通訊軟體等方式，取得夥伴的連結貼至下方輸入欄中，並按下確定。</div>
           </div>
         </div>
         <input class="input" v-model="partnerToken" placeholder="請輸入夥伴的連結" />
@@ -82,7 +82,7 @@
           <span v-if="hasPartner">
             你先前已新增其他夥伴，與新的夥伴踏上旅程的話，先前的夥伴將會被取代。
           </span>
-          <span>
+          <span v-else>
             與夥伴踏上旅程的話，可以使用對方的碎片進行解題。
           </span>
         </div>
@@ -104,7 +104,8 @@
             </div>
             <div class="history-card-time">
               {{ new Date(deliverer.timestamp * 1000).toLocaleString('zh-TW', {
-                  hour12: false,
+                  timeZone: 'Asia/Taipei',
+                  hourCycle: 'h23',
                   year: "numeric",
                   month: "2-digit",
                   day: "2-digit",
@@ -195,7 +196,7 @@ export default {
       let token = localStorage.getItem('token')
       try {
         navigator.clipboard.writeText(`https://puzzle.sitcon.party/?token=${token}`)
-        this.toast.success('已複製網址，請分享給夥伴貼上！')
+        this.toast.success('網址複製成功！')
       } catch (e) {
         window.prompt("請複製以下網址", `https://puzzle.sitcon.party/?token=${token}`)
       }
