@@ -29,7 +29,7 @@
         {{ puzzleList[puzzle] }}
       </div>
     </div>
-    <div class="add-partner-btn" @click="addPartnerModal = true">
+    <div class="btn" @click="addPartnerModal = true">
       <span v-if="hasPartner">
         <i class='bx bx-refresh'></i>
         <span>更換夥伴</span>
@@ -128,7 +128,7 @@
   </div>
 </template>
 <script>
-import puzzleList from '@/assets/puzzles.json'
+import puzzleList from '@/assets/puzzles'
 import { useToast } from "vue-toastification";
 export default {
   setup() {
@@ -258,23 +258,6 @@ export default {
       margin-top: 4px
       border-top: 1px solid rgba(255, 255, 255, .05)
       padding-top: 4px
-.add-partner-btn
-  display: flex
-  align-items: center
-  justify-content: center
-  color: #333
-  background-color: #82d357
-  border: 2px solid #82d357
-  border-radius: 4px
-  padding: 8px
-  font-family: 'Noto Sans TC', monospace
-  cursor: pointer
-  transition: all .2s ease-in-out
-  &:hover
-    background-color: #6dbb4a
-    border: 2px solid #6dbb4a
-  i
-    margin-right: 4px
 .add-partner-steps
   display: grid
   grid-template-columns: repeat(2, 1fr)

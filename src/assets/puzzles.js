@@ -1,4 +1,4 @@
-{
+export default  {
   "a": "if ... else:",
   "b": "foo > 4",
   "c": "output = foo * 2",
