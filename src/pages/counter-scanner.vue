@@ -243,7 +243,6 @@ export default {
           this.step = 1
           this.token1 = content
         }
-        console.log(this.step)
         if (this.step == 1) {
           if (this.token1 != content) {
             this.step = 2
@@ -265,14 +264,14 @@ export default {
           }
         } catch (e) {
           this.loading = false
-          this.toast.error('伺服器錯誤')
+          this.toast.error('兌換時發生伺服器錯誤')
+          this.reset()
           return
         }
         this.loading = false
         this.redeemStatus = '兌換成功'
         this.redeemIcon = [`bx`, `bxs-check-circle`]
         this.redeemModal = true
-
       } else {
         this.redeemStatus = `碎片不足(${puzzles.length}/27)`
         this.redeemIcon = [`bx`, `bx-sad`]
