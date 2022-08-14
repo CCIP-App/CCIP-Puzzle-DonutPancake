@@ -26,5 +26,6 @@ export default {
   "y": "for i in ...:",
   "z": "range(1, foo):",
   "aa": "i % 3 == 0 or i % 5 == 0",
-  "ab": "output = output + 1"
+  "ab": "output = output + 1",
+  "total": "總數"
 }
