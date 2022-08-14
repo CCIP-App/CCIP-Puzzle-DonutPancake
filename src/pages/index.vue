@@ -32,7 +32,7 @@
     <div class="btn" @click="addPartnerModal = true">
       <span v-if="hasPartner">
         <i class='bx bx-refresh'></i>
-        <span>更換夥伴</span>
+        <span>更換 / 移除夥伴</span>
       </span>
       <span v-else>
         <i class='bx bx-plus'></i>
@@ -54,7 +54,7 @@
     <modal v-model="addPartnerModal">
       <template #title>
         <span v-if="hasPartner">
-          更換夥伴
+          更換 / 移除夥伴
         </span>
         <span v-else>
           加入夥伴
@@ -88,6 +88,8 @@
         </div>
       </template>
       <template #actions>
+        <a class="modal-action danger" @click="removePartner">移除夥伴</a>
+        <div style="flex:1" />
         <a class="modal-action" @click="addPartnerModal = false">取消</a>
         <a class="modal-action primary" @click="addPartner">確定</a>
       </template>
@@ -233,6 +235,15 @@ export default {
       } else {
         this.toast.error('好像沒辦法將自己加入為夥伴。 (；′⌒`)')
       }
+    },
+    removePartner() {
+      localStorage.removeItem('partnerToken')
+      this.hasPartner = false
+      this.partnerPuzzles = []
+      this.addPartnerModal = false
+      this.toast.info('夥伴已移除。')
+      this.updatePuzzleProgress()
+    },
     }
   }
 }

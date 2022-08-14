@@ -54,8 +54,10 @@
     justify-content: flex-end
     background-color: rgba(0,0,0,.05)
     border-radius: 0 0 4px 4px
+    gap: 16px
+    .spacer
+      flex: 1
     .modal-action
-      margin-left: 16px
       background-color: rgba(255,255,255,.05)
       padding: 8px 16px
       min-width: 100px
@@ -75,6 +77,12 @@
           background-color: #01509c
         &:active
           background-color: #01396e
+      &.danger
+        background-color: #d32f2f
+        &:hover
+          background-color: #b71c1c
+        &:active
+          background-color: #8e0000
 .modal-enter-active, .modal-leave-active
   transition: opacity 0.3s
 .modal-enter, .modal-leave-to
