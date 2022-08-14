@@ -61,6 +61,7 @@ export default {
         localStorage[`problem-${this.problem}`] = JSON.stringify(resPuzzles)
         if (requiredPuzzle.length === resPuzzles.length) {
           this.toast.success('恭喜你完成這個題目！')
+          this.$router.push(`/problem/`)
         }
       } else {
         this.toast.error('這個碎片似乎拼不上這個題目')
