@@ -60,7 +60,7 @@ export default {
         this.$emit('update:modelValue', resPuzzles)
         localStorage[`problem-${this.problem}`] = JSON.stringify(resPuzzles)
         if (requiredPuzzle.length === resPuzzles.length) {
-          this.toast.success('恭喜你完成這個題目！')
+          this.toast.success(`恭喜你完成${problem.title}！`)
           this.$router.push(`/problem/`)
         }
       } else {
