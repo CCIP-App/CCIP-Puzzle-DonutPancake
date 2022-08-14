@@ -56,7 +56,7 @@
         恭喜！
       </template>
       <template #content>
-        你已完成活動，感謝你參加 SITCON X 程式碼拼圖活動！
+        你已完成活動並成功兌換限量獎品及抽獎券，感謝你參加 SITCON X 程式碼拼圖活動！
       </template>
       <template #actions>
         <a class="modal-action" @click="doneModal = false">關閉</a>
