@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createHead } from "@vueuse/head"
 import { createRouter, createWebHistory } from 'vue-router'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -46,7 +47,11 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+const head = createHead({
+  titleTemplate: title => (title ? `${title} | ` : '') + 'SITCON X 程式碼拼圖',
+})
 app.use(router)
+app.use(head)
 app.use(Toast)
 app.mount('#app')
 

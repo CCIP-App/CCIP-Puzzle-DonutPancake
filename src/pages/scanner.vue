@@ -99,8 +99,13 @@
 <script>
 import { QrStream } from 'vue3-qr-reader';
 import { useToast } from "vue-toastification";
+import { useHead } from "@vueuse/head"
+
 export default {
   setup() {
+    useHead({
+      title: '攤位掃描器'
+    })
     const toast = useToast();
     return { toast }
   },

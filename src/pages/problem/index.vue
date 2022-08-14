@@ -50,8 +50,14 @@
 </template>
 
 <script>
+import { useHead } from "@vueuse/head"
 import problems from '@/assets/problems'
 export default {
+  setup() {
+    useHead({
+      title: '題目'
+    })
+  },
   data() {
     return ({
       problems,

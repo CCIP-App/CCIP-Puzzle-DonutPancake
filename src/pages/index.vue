@@ -106,15 +106,15 @@
             </div>
             <div class="history-card-time">
               {{ new Date(deliverer.timestamp * 1000).toLocaleString('zh-TW', {
-                  timeZone: 'Asia/Taipei',
-                  hourCycle: 'h23',
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit"
-                })
+              timeZone: 'Asia/Taipei',
+              hourCycle: 'h23',
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit"
+              })
               }}
             </div>
           </div>
@@ -132,9 +132,13 @@
 <script>
 import puzzleList from '@/assets/puzzles'
 import { useToast } from "vue-toastification";
+import { useHead } from "@vueuse/head"
 export default {
   setup() {
     const toast = useToast();
+    useHead({
+      title: '首頁'
+    })
     return { toast }
   },
   data() {

@@ -27,18 +27,28 @@
 </template>
 <script>
 
+import { useHead } from "@vueuse/head"
+import { useRoute } from 'vue-router'
+import { defineComponent, computed, reactive } from "vue"
 import problems from '@/assets/problems'
 export default {
+  setup() {
+    const route = useRoute()
+    let problemId = computed(() => {
+      return parseInt(route.params.id)
+    })
+    useHead({
+      title: problems[problemId.value - 1].title
+    })
+    return {
+      problemId
+    }
+  },
   data() {
     return ({
       selectedPuzzles: [],
       problems,
     })
-  },
-  computed: {
-    problemId() {
-      return parseInt(this.$route.params.id)
-    }
   },
   methods: {
   },

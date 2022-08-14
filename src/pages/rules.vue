@@ -53,3 +53,9 @@
     </div>
   </div>
 </template>
+<script setup>
+import { useHead } from "@vueuse/head"
+useHead({
+  title: '規則'
+})
+</script>
