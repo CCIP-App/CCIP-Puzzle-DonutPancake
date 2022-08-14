@@ -44,6 +44,10 @@
   .modal-content
     padding: 16px
     line-height: 1.5
+    img
+      max-width: 70%
+      display: block
+      margin: 0 auto
   .modal-actions
     padding: 8px 16px
     display: flex

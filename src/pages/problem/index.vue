@@ -34,6 +34,20 @@
         已完成
       </div>
     </div>
+    <modal v-model="allDoneModal">
+      <template #title>
+        恭喜！
+      </template>
+      <template #content>
+        你已成功{{ hasPartner ? '和你的夥伴' : '' }}完成所有題目，請{{ hasPartner ? '與夥伴一同' : '' }}前往服務台領取獎品與抽獎券吧！
+        <br />
+        <small>＊ 獎品數量有限，先到先得。</small>
+        <img src="/imgs/rule-gifts.png" />
+      </template>
+      <template #actions>
+        <a class="modal-action primary" @click="allDoneModal = false">了解</a>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -49,10 +63,13 @@ export default {
         3: false,
         4: false,
         5: false,
-      }
+      },
+      allDoneModal: false,
+      hasPartner: false,
     })
   },
   created() {
+    this.hasPartner = localStorage.getItem('partnerToken') !== null
     this.checkDone()
   },
   methods: {
@@ -65,6 +82,9 @@ export default {
             this.done[i] = true
           }
         }
+      }
+      if (Object.values(this.done).every(item => item)) {
+        this.allDoneModal = true
       }
     }
   }
