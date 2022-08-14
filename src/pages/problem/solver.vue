@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar title="第一題" to="/problem" />
+    <nav-bar :title="problems[problemId - 1].title" to="/problem" />
     <div class="problem-card card">
       <div class="problem-card-content">
         <div class="problem-card-content-title">
