@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createHead } from "@vueuse/head"
 import { createRouter, createWebHistory } from 'vue-router'
+import VueCryptojs from 'vue-cryptojs'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import './style.sass'
@@ -11,6 +12,9 @@ const router = createRouter({
   routes: [{
     path: '/scanner',
     component: () => import('./pages/scanner.vue')
+  }, {
+    path: '/counter-scanner',
+    component: () => import('./pages/counter-scanner.vue')
   }, {
     path: '/',
     component: defaultLayout,
@@ -52,6 +56,7 @@ const head = createHead({
 })
 app.use(router)
 app.use(head)
+app.use(VueCryptojs)
 app.use(Toast)
 app.mount('#app')
 
