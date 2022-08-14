@@ -88,7 +88,7 @@
         </div>
       </template>
       <template #actions>
-        <a class="modal-action danger" @click="removePartner">移除夥伴</a>
+        <a class="modal-action danger" @click="removePartner" v-if="hasPartner">移除夥伴</a>
         <div style="flex:1" />
         <a class="modal-action" @click="addPartnerModal = false">取消</a>
         <a class="modal-action primary" @click="addPartner">確定</a>
@@ -286,12 +286,17 @@ export default {
     border-radius: 6px
     border: 1px solid rgba(255,255,255,.1)
     box-shadow: 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.1)
+    @media screen and (max-width: 425px)
+      padding: 4px 8px
+      font-size: 14px
     .step-icon
       font-size: 24px
+      @media screen and (max-width: 425px)
+        font-size: 18px
     .step-title
       font-weight: 700
     .step-description
-      font-size: .8rem
+      font-size: .8em
       opacity: .75
 .cat-bg
   width: 70%

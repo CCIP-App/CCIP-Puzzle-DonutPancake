@@ -41,9 +41,13 @@
     font-weight: 700
     padding: 16px
     padding-bottom: 0
+    @media screen and (max-width: 425px)
+      font-size: 1rem
   .modal-content
     padding: 16px
     line-height: 1.5
+    @media screen and (max-width: 425px)
+      font-size: 0.875rem
     img
       max-width: 70%
       display: block
@@ -55,6 +59,9 @@
     background-color: rgba(0,0,0,.05)
     border-radius: 0 0 4px 4px
     gap: 16px
+    @media screen and (max-width: 425px)
+      gap: 8px
+      font-size: 0.75rem
     .spacer
       flex: 1
     .modal-action
@@ -66,6 +73,9 @@
       border: 1px solid rgba(255,255,255,.05)
       box-shadow: 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.1)
       cursor: pointer
+      @media screen and (max-width: 425px)
+        padding: 6px 12px
+        min-width: 80px
       &:hover
         background-color: rgba(255,255,255,.15)
       &:active
