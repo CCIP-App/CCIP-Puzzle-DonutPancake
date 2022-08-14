@@ -15,6 +15,7 @@
         <div class="problem-card-header-num">{{ i + 1 }}</div>
         <div class="problem-card-header-title">{{ problem.title }}</div>
       </div>
+      <img src="/imgs/done.svg" class="done" v-if="done[i + 1]" />
       <template v-if="!done[i + 1]">
         <div class="problem-card-content">
           <div class="problem-card-content-title">
@@ -30,9 +31,6 @@
       <router-link class="btn" :to="`/problem/${i + 1}`" v-if="!done[i + 1]">
         解題
       </router-link>
-      <div class="btn disabled" v-else>
-        已完成
-      </div>
     </div>
     <modal v-model="allDoneModal">
       <template #title>
