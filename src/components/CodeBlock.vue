@@ -20,7 +20,7 @@ def main(foo):
     <span class="puzzle-l">i = 1</span>
     <span class="puzzle-m">temp = 4</span>
     <span class="puzzle-n">while</span> <span class="puzzle-o">i != foo</span><span class="puzzle-n">:</span>
-        <span class="puzzle-p">if</span> <span class="puzzle-q">temp == foo</span><span class="puzzle-p">:</span>
+        <span class="puzzle-p">if</span> <span class="puzzle-i">foo == temp</span><span class="puzzle-p">:</span>
             <span class="puzzle-r">print(i)</span>
         <span class="puzzle-s">temp = temp * 4</span>
         <span class="puzzle-t">i = i + 1</span></pre>

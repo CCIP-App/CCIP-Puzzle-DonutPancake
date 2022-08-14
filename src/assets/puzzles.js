@@ -1,4 +1,4 @@
-export default  {
+export default {
   "a": "if ... else:",
   "b": "foo > 4",
   "c": "output = foo * 2",
@@ -7,7 +7,7 @@ export default  {
   "f": "temp =",
   "g": "\"\".join()",
   "h": "reversed(foo)",
-  "i": "foo == temp:",
+  "i": "foo == temp",
   "j": "print(\"True\")",
   "k": "print(\"False\")",
   "l": "i = 1",
@@ -15,7 +15,7 @@ export default  {
   "n": "while...:",
   "o": "i != foo",
   "p": "if...:",
-  "q": "temp == foo",
+  "q": "[removed]",
   "r": "print(i)",
   "s": "temp = temp * 4",
   "t": "i = i + 1",

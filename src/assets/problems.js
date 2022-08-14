@@ -29,7 +29,7 @@ export default [
       { input: 1024, output: 5 },
       { input: 262144, output: 9 },
     ],
-    required: ['l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't']
+    required: ['l', 'm', 'n', 'o', 'p', 'i', 'r', 's', 't']
   },
   {
     title: '第四題',
