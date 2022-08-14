@@ -149,40 +149,43 @@ export default {
     })
   },
   async created() {
-    // get token from url query
-    let token = this.$route.query.token || localStorage.getItem('token')
-    let partnerToken = localStorage.getItem('partnerToken')
-    if (token) {
-      localStorage.setItem('token', token)
-      let res = await this.getPuzzles(token)
-      if (res) {
-        this.puzzles = res.puzzles
-        this.deliverers = res.deliverers
+    this.getData()
+  },
+  methods: {
+    async getData() {
+      // get token from url query
+      let token = this.$route.query.token || localStorage.getItem('token')
+      let partnerToken = localStorage.getItem('partnerToken')
+      if (token) {
+        localStorage.setItem('token', token)
+        let res = await this.getPuzzles(token)
+        if (res) {
+          this.puzzles = res.puzzles
+          this.deliverers = res.deliverers
+        } else {
+          this.nonTokenModal = true
+          this.puzzles = []
+          this.deliverers = []
+        }
       } else {
         this.nonTokenModal = true
         this.puzzles = []
         this.deliverers = []
       }
-    } else {
-      this.nonTokenModal = true
-      this.puzzles = []
-      this.deliverers = []
-    }
-    if (partnerToken) {
-      this.hasPartner = true
-      let res = await this.getPuzzles(partnerToken)
-      if (res) {
-        this.partnerPuzzles = res.puzzles
-      } else {
-        // partner token is invalid
-        this.hasPartner = false
-        localStorage.removeItem('partnerToken')
-        this.toast.error('無法取得夥伴的碎片，請重新加入夥伴。')
-        this.partnerPuzzles = []
+      if (partnerToken) {
+        this.hasPartner = true
+        let res = await this.getPuzzles(partnerToken)
+        if (res) {
+          this.partnerPuzzles = res.puzzles
+        } else {
+          // partner token is invalid
+          this.hasPartner = false
+          localStorage.removeItem('partnerToken')
+          this.toast.error('無法取得夥伴的碎片，請重新加入夥伴。')
+          this.partnerPuzzles = []
+        }
       }
-    }
-  },
-  methods: {
+    },
     async getPuzzles(token) {
       let result = await fetch(`https://sitcon.opass.app/event/puzzle?token=${token}`)
       if (result.ok) {
@@ -222,6 +225,7 @@ export default {
           localStorage.setItem('partnerToken', partnerToken)
           this.hasPartner = true
           this.addPartnerModal = false
+          this.partnerPuzzles = res.puzzles
           this.toast.success('成功加入夥伴！')
         } else {
           this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
