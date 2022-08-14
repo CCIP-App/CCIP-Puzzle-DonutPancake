@@ -56,7 +56,7 @@ export default {
       if (requiredPuzzle.includes(puzzle)) {
         this.modelValue.push(puzzle)
         this.$emit('update:modelValue', this.modelValue)
-        localStorage.setItem(`problem-${this.problem}`, JSON.stringify(this.modelValue))
+        localStorage[`problem-${this.problem}`] = JSON.stringify(this.modelValue)
         if (requiredPuzzle.length === this.modelValue.length) {
           this.toast.success('恭喜你完成這個題目！')
         }
