@@ -54,10 +54,12 @@ export default {
       let problem = problems[this.problem - 1]
       let requiredPuzzle = problem.required
       if (requiredPuzzle.includes(puzzle)) {
-        this.modelValue.push(puzzle)
-        this.$emit('update:modelValue', this.modelValue)
-        localStorage[`problem-${this.problem}`] = JSON.stringify(this.modelValue)
-        if (requiredPuzzle.length === this.modelValue.length) {
+        let resPuzzles = JSON.parse(JSON.stringify(this.modelValue))
+        resPuzzles.push(puzzle)
+        resPuzzles = [...new Set(resPuzzles)]
+        this.$emit('update:modelValue', resPuzzles)
+        localStorage[`problem-${this.problem}`] = JSON.stringify(resPuzzles)
+        if (requiredPuzzle.length === resPuzzles.length) {
           this.toast.success('恭喜你完成這個題目！')
         }
       } else {
@@ -86,6 +88,17 @@ export default {
         }
       }
       this.puzzles = [...new Set(puzzleResult)]
+      // update from localStorage
+      let savedPuzzles = localStorage[`problem-${this.problem}`]
+      if (savedPuzzles) {
+        savedPuzzles = JSON.parse(savedPuzzles)
+        // filter out invalid puzzles
+        savedPuzzles = savedPuzzles.filter(puzzle => this.puzzles.includes(puzzle))
+        // update modelValue
+        this.$emit('update:modelValue', savedPuzzles)
+        // saved to localStorage
+        localStorage[`problem-${this.problem}`] = JSON.stringify(savedPuzzles)
+      }
     }
   }
 }

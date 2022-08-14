@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     problemId() {
-      return this.$route.params.id
+      return parseInt(this.$route.params.id)
     }
   },
   methods: {
