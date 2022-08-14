@@ -51,6 +51,17 @@
         <a class="modal-action" @click="nonTokenModal = false">關閉</a>
       </template>
     </modal>
+    <modal v-model="doneModal">
+      <template #title>
+        恭喜！
+      </template>
+      <template #content>
+        你已完成活動，感謝你參加 SITCON X 程式碼拼圖活動！
+      </template>
+      <template #actions>
+        <a class="modal-action" @click="doneModal = false">關閉</a>
+      </template>
+    </modal>
     <modal v-model="addPartnerModal">
       <template #title>
         <span v-if="hasPartner">
@@ -144,6 +155,7 @@ export default {
   data() {
     return ({
       puzzleList,
+      doneModal: false,
       nonTokenModal: false,
       historyModal: false,
       addPartnerModal: false,
@@ -197,6 +209,9 @@ export default {
       if (result.ok) {
         result = await result.json()
         result.deliverers = result.deliverers.sort((a, b) => b.timestamp - a.timestamp)
+        if (result.valid) {
+          this.doneModal = true
+        }
         return result
       }
       return null
