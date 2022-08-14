@@ -229,6 +229,8 @@ export default {
           this.addPartnerModal = false
           this.partnerPuzzles = res.puzzles
           this.toast.success('成功加入夥伴！')
+          // update puzzle progress
+          this.updatePuzzleProgress()
         } else {
           this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
         }
@@ -244,6 +246,17 @@ export default {
       this.toast.info('夥伴已移除。')
       this.updatePuzzleProgress()
     },
+    updatePuzzleProgress() {
+      let allPuzzles = [...this.puzzles, ...this.partnerPuzzles]
+      // 1-5
+      for (let i = 1; i <= 5; i++) {
+        let problem = localStorage.getItem(`problem-${i}`)
+        if (problem) {
+          problem = JSON.parse(problem)
+          problem = problem.filter(p => allPuzzles.includes(p))
+          localStorage.setItem(`problem-${i}`, JSON.stringify(problem))
+        }
+      }
     }
   }
 }
