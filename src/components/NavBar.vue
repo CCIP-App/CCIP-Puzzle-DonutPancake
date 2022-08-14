@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    <router-link class="back" to="/" v-if="!hideBack">
+    <router-link class="back" :to="to" v-if="!hideBack">
       <div class="icon">
         ◀️
       </div>
@@ -23,6 +23,10 @@ export default {
     hideBack: {
       type: Boolean,
       default: false
+    },
+    to: {
+      type: String,
+      default: '/'
     }
   }
 }
@@ -37,6 +41,7 @@ export default {
   background-color: #82d357
   width: 100vw
   height: 60px
+  margin: 0 -16px
   @media (min-width: 1024px)
     width: 512px
   .back

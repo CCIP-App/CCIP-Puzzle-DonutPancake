@@ -234,17 +234,6 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-.puzzle-cards
-  display: grid
-  grid-template-columns: repeat(2, 1fr)
-  gap: 8px
-  .puzzle-card
-    color: #333
-    background-color: #82d357
-    border: 2px solid #82d357
-    border-radius: 4px
-    padding: 8px
-    font-family: 'Ubuntu Mono', 'Noto Sans TC', monospace
 .history-cards
   max-height: 300px
   overflow-y: scroll

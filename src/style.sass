@@ -88,11 +88,75 @@ input
   padding: 8px
   font-family: 'Noto Sans TC', monospace
   cursor: pointer
+  line-height: 1
+  text-decoration: none
   &:hover
     background-color: #6dbb4a
     border: 2px solid #6dbb4a
   &:active
     background-color: #68a945
     border: 2px solid #68a945
+  &.disabled
+    background-color: #82d357
+    border: 2px solid #82d357
+    opacity: .5
+    cursor: not-allowed
+    pointer-events: none
   i
     margin-right: 4px
+
+.puzzle-cards
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 8px
+  .puzzle-card
+    color: #333
+    background-color: #82d357
+    border: 2px solid #82d357
+    border-radius: 4px
+    padding: 8px
+    font-family: 'Ubuntu Mono', 'Noto Sans TC', monospace
+    &.selected
+      background-color: transparent
+      color: #fff
+
+
+.problem-card
+  .problem-card-header
+    display: flex
+    align-items: center
+    font-size: 1.5em
+    font-weight: 700
+    margin-bottom: 8px
+    .problem-card-header-num
+      font-family: 'Ubuntu Mono', monospace
+      color: #333
+      background-color: #82d357
+      height: 1.5em
+      width: 1.5em
+      margin-right: 8px
+      display: flex
+      justify-content: center
+      align-items: center
+      border-radius: 4px
+  .problem-card-content
+    font-family: 'Ubuntu Mono', monospace
+    line-height: 1.25
+    .problem-card-content-title,.problem-card-content-data
+      display: grid
+      grid-template-columns: repeat(2,1fr)
+      gap: 8px
+      .problem-card-input,.problem-card-output
+        padding: 8px
+        border-radius: 4px
+        margin-bottom: 8px
+        &.problem-card-input
+          background-color: #222
+          color: #d7ffd1
+        &.problem-card-output
+          background-color: #222
+          color: #82d357
+    .problem-card-content-title
+      font-weight: 700
+    .problem-card-content-data
+      opacity: 0.8
