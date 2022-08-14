@@ -1,11 +1,13 @@
 <template>
   <div class="mobile-view-container">
     <div class="mobile-view">
-      <nav-bar title="攤位掃描器" hide-back />
       <qr-stream @decode="onDecode" class="qrstream">
         <div>
-          <div style="color: red;" class="frame"></div>
-          <div class="display-name">{{ displayName }}</div>
+          <div class="header">
+            <div class="title">{{ displayName }}</div>
+            <div class="subtitle">攤位掃描器</div>
+          </div>
+          <div class="frame"></div>
         </div>
       </qr-stream>
       <modal v-model="nonTokenModal">
@@ -55,9 +57,26 @@
     width: 512px
 .qrstream
   width: 100% !important
-  height: calc(var(--vh,1vh) * 100 - 60px) !important
-  height: calc(100dvh - 60px) !important
+  height: calc(var(--vh,1vh) * 100) !important
+  height: calc(100dvh) !important
   position: relative
+  .header
+    position: absolute
+    width: 100%
+    top: 0
+    left: 0
+    padding: 8px
+    background-color: rgba(0, 0, 0, 0.25)
+    backdrop-filter: blur(4px)
+    text-align: center
+    .title
+      font-size: 24px
+      font-weight: 700
+    .subtitle
+      margin-top: 4px
+      font-size: 12px
+      font-weight: 400
+      opacity: 0.75
   .frame
     position: absolute
     top: 0
@@ -71,19 +90,6 @@
     box-sizing: border-box
     pointer-events: none
     animation: blink 1s ease-in-out infinite
-  .display-name
-    position: absolute
-    left: 0
-    right: 0
-    bottom: 0
-    margin: auto
-    color: #333
-    font-size: 24px
-    font-weight: 700
-    text-align: center
-    background-color: #82d357
-    padding: 8px
-    opacity: .75
 @keyframes blink
   0%,100%
     opacity: 0.5
