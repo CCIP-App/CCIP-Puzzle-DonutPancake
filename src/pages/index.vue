@@ -216,10 +216,10 @@ export default {
       }
       return null
     },
-    copyTokenURL() {
+    async copyTokenURL() {
       let token = localStorage.getItem('token')
       try {
-        navigator.clipboard.writeText(`https://puzzle.sitcon.party/?token=${token}`)
+        await navigator.clipboard.writeText(`https://puzzle.sitcon.party/?token=${token}`)
         this.toast.success('連結複製成功！')
       } catch (e) {
         window.prompt("請複製以下連結", `https://puzzle.sitcon.party/?token=${token}`)
