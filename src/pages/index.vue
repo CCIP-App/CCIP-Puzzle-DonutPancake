@@ -42,13 +42,13 @@
     <img src="/imgs/meow-puzzle.png" class="cat-bg" />
     <modal v-model="nonTokenModal">
       <template #title>
-        Token 無效
+        尚未登入或未完成報到
       </template>
       <template #content>
-        請檢查 OPass 是否已成功報到，若持續發生此問題，請聯絡工作人員。
+        <non-token-modal-content />
       </template>
       <template #actions>
-        <a class="modal-action" @click="nonTokenModal = false">關閉</a>
+        <a class="modal-action danger" @click="nonTokenModal = false">取消</a>
       </template>
     </modal>
     <modal v-model="doneModal">
@@ -144,8 +144,8 @@
       </template>
       <template #content>
         <p style="margin-top:0;">你可以安心地公開代碼讓對方測試能否完成題目，完成大地遊戲需要兩人一同在大會服務台出示票券 QR Code。</p>
-        <div class="copy-select-items">
-          <div class="copy-select-item" @click="copyToken('token')">
+        <div class="select-items">
+          <div class="select-item" @click="copyToken('token')">
             <div class="icon">
               <i class='bx bx-share-alt'></i>
             </div>
@@ -154,7 +154,7 @@
               <div class="description">提供代碼給朋友加入為解題夥伴。</div>
             </div>
           </div>
-          <div class="copy-select-item" @click="copyToken('url')">
+          <div class="select-item" @click="copyToken('url')">
             <div class="icon">
               <i class='bx bx-user'></i>
             </div>
@@ -304,31 +304,6 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-.copy-select-items
-  display: grid
-  grid-template-columns: 1fr 1fr
-  gap: 8px
-  .copy-select-item
-    background-color: rgba(255,255,255,.05)
-    padding: 8px 16px
-    border-radius: 6px
-    border: 1px solid rgba(255,255,255,.05)
-    box-shadow: 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.1)
-    cursor: pointer
-    &:hover
-      background-color: rgba(255,255,255,.15)
-    &:active
-      background-color: rgba(255,255,255,.2)
-      box-shadow: 0 1.5px 1.5px 0 rgba(0, 0, 0, 0.1)
-    .icon
-      font-size: 24px
-    .content
-      .title
-        font-weight: bold
-        margin-bottom: 2px
-      .description
-        font-size: 14px
-        opacity: .75
 .history-cards
   max-height: 300px
   overflow-y: scroll

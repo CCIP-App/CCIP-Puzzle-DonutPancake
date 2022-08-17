@@ -25,6 +25,34 @@ input
 // pre line break
 pre
   white-space: pre-wrap
+
+
+.select-items
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 8px
+  .select-item
+    background-color: rgba(255,255,255,.05)
+    padding: 8px 16px
+    border-radius: 6px
+    border: 1px solid rgba(255,255,255,.05)
+    box-shadow: 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.1)
+    cursor: pointer
+    &:hover
+      background-color: rgba(255,255,255,.15)
+    &:active
+      background-color: rgba(255,255,255,.2)
+      box-shadow: 0 1.5px 1.5px 0 rgba(0, 0, 0, 0.1)
+    .icon
+      font-size: 24px
+    .content
+      .title
+        font-weight: bold
+        margin-bottom: 2px
+      .description
+        font-size: 14px
+        opacity: .75
+
 .input-description
   margin-top: 4px
   opacity: .75

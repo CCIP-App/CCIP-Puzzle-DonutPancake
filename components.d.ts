@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Loader: typeof import('./src/components/loader.vue')['default']
     Modal: typeof import('./src/components/Modal.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    NonTokenModalContent: typeof import('./src/components/NonTokenModalContent.vue')['default']
     PuzzleSelector: typeof import('./src/components/PuzzleSelector.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
