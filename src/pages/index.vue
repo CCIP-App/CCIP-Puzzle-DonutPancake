@@ -77,18 +77,18 @@
             <div class="step-icon">
               <i class='bx bx-copy'></i>
             </div>
-            <div class="step-title">1. 複製連結</div>
-            <div class="step-description">開啟夥伴的碎片頁面，輕觸右上角的複製按鈕。</div>
+            <div class="step-title">1. 複製夥伴代碼</div>
+            <div class="step-description">開啟夥伴的碎片頁面，輕觸右上角的複製按鈕，選擇「複製夥伴代碼」。</div>
           </div>
           <div class="add-partner-step">
             <div class="step-icon">
               <i class='bx bx-paste'></i>
             </div>
-            <div class="step-title">2. 貼上連結</div>
-            <div class="step-description">透過通訊軟體等方式，取得夥伴的連結貼至下方欄位，並按下確定。</div>
+            <div class="step-title">2. 貼上夥伴代碼</div>
+            <div class="step-description">透過通訊軟體等方式，取得對方的夥伴代碼貼至下方欄位，並按下確定。</div>
           </div>
         </div>
-        <input class="input" v-model="partnerToken" placeholder="請輸入夥伴的連結" />
+        <input class="input" v-model="partnerToken" placeholder="請輸入夥伴代碼" />
         <div class="input-description">
           <span v-if="hasPartner">
             你先前已新增其他夥伴，與新的夥伴踏上旅程的話，先前的夥伴將會被取代。
