@@ -3,7 +3,7 @@
     <div class="title-bar">
       <h1>碎片</h1>
       <div class="actions">
-        <div class="icon-btn" @click="copyTokenURL">
+        <div class="icon-btn" @click="copyModal = true">
           <i class='bx bx-copy'></i>
         </div>
         <div class="icon-btn" @click="historyModal = true">
@@ -138,6 +138,37 @@
         <a class="modal-action" @click="historyModal = false">關閉</a>
       </template>
     </modal>
+    <modal v-model="copyModal">
+      <template #title>
+        複製
+      </template>
+      <template #content>
+        <div class="copy-select-items">
+          <div class="copy-select-item" @click="copyToken('token')">
+            <div class="icon">
+              <i class='bx bx-share-alt'></i>
+            </div>
+            <div class="content">
+              <div class="title">複製夥伴代碼</div>
+              <div class="description">提供代碼給朋友加入為解題夥伴。</div>
+            </div>
+          </div>
+          <div class="copy-select-item" @click="copyToken('url')">
+            <div class="icon">
+              <i class='bx bx-user'></i>
+            </div>
+            <div class="content">
+              <div class="title">複製專屬網址</div>
+              <div class="description">讓你能夠在其他裝置或瀏覽器中進行大地遊戲，不過解題進度無法被同步。</div>
+            </div>
+          </div>
+        </div>
+        <small>您可以安心公開代碼讓對方測試能否完成題目，完成大地遊戲需要兩人一同在大會服務台出示票券 QR Code。</small>
+      </template>
+      <template #actions>
+        <a class="modal-action" @click="copyModal = false">關閉</a>
+      </template>
+    </modal>
   </div>
 </template>
 <script>
@@ -159,6 +190,7 @@ export default {
       nonTokenModal: false,
       historyModal: false,
       addPartnerModal: false,
+      copyModal: false,
       partnerToken: '',
       hasPartner: false,
       puzzles: null,
@@ -216,29 +248,20 @@ export default {
       }
       return null
     },
-    async copyTokenURL() {
-      let token = localStorage.getItem('token')
+    async copy(text) {
       try {
-        await navigator.clipboard.writeText(`https://puzzle.sitcon.party/?token=${token}`)
-        this.toast.success('連結複製成功！')
+        await navigator.clipboard.writeText(text)
+        this.toast.success('複製成功！')
       } catch (e) {
-        window.prompt("請複製以下連結", `https://puzzle.sitcon.party/?token=${token}`)
+        window.prompt("請複製以下內容", text)
       }
     },
+    async copyToken(type = 'token') {
+      let token = localStorage.getItem('token')
+      this.copy(type == 'token' ? token : `https://puzzle.sitcon.party/?token=${token}`)
+    },
     async addPartner() {
-      let partnerTokenURL = this.partnerToken
-      if (!partnerTokenURL.startsWith('https://puzzle.sitcon.party/?token=')) {
-        this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
-        return
-      }
-      partnerTokenURL = new URL(partnerTokenURL)
-
-      let partnerToken = partnerTokenURL.searchParams.get('token')
-      if (!partnerToken) {
-        this.toast.error('糟糕，你輸入的似乎不是正確的連結！')
-        return
-      }
-
+      let partnerToken = this.partnerToken
       let selfToken = this.$route.query.token || localStorage.getItem('token')
       if (partnerToken != selfToken) {
         let res = await this.getPuzzles(partnerToken)
@@ -281,6 +304,32 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
+.copy-select-items
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 8px
+  margin-bottom: 8px
+  .copy-select-item
+    background-color: rgba(255,255,255,.05)
+    padding: 8px 16px
+    border-radius: 6px
+    border: 1px solid rgba(255,255,255,.05)
+    box-shadow: 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.1)
+    cursor: pointer
+    &:hover
+      background-color: rgba(255,255,255,.15)
+    &:active
+      background-color: rgba(255,255,255,.2)
+      box-shadow: 0 1.5px 1.5px 0 rgba(0, 0, 0, 0.1)
+    .icon
+      font-size: 24px
+    .content
+      .title
+        font-weight: bold
+        margin-bottom: 2px
+      .description
+        font-size: 14px
+        opacity: .75
 .history-cards
   max-height: 300px
   overflow-y: scroll
