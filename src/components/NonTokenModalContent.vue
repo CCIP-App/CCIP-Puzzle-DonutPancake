@@ -62,8 +62,13 @@
   background-color: #222
 </style>
 <script>
+import { inject } from 'vue'
 import { QrStream } from 'vue3-qr-reader';
 export default {
+  setup() {
+    const cryoptojs = inject('cryptojs')
+    return { cryoptojs }
+  },
   components: {
     QrStream
   },
@@ -76,7 +81,8 @@ export default {
   },
   methods: {
     goToken() {
-      location.href = `/?token=${this.token}`
+      let publicToken = this.cryoptojs.SHA1(this.token).toString()
+      location.href = `/?token=${publicToken}`
     },
     onDecode(content) {
       this.token = content;
