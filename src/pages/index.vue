@@ -143,6 +143,7 @@
         複製
       </template>
       <template #content>
+        <p style="margin-top:0;">你可以安心地公開代碼讓對方測試能否完成題目，完成大地遊戲需要兩人一同在大會服務台出示票券 QR Code。</p>
         <div class="copy-select-items">
           <div class="copy-select-item" @click="copyToken('token')">
             <div class="icon">
@@ -163,7 +164,6 @@
             </div>
           </div>
         </div>
-        <small>您可以安心公開代碼讓對方測試能否完成題目，完成大地遊戲需要兩人一同在大會服務台出示票券 QR Code。</small>
       </template>
       <template #actions>
         <a class="modal-action" @click="copyModal = false">關閉</a>
@@ -308,7 +308,6 @@ export default {
   display: grid
   grid-template-columns: 1fr 1fr
   gap: 8px
-  margin-bottom: 8px
   .copy-select-item
     background-color: rgba(255,255,255,.05)
     padding: 8px 16px
