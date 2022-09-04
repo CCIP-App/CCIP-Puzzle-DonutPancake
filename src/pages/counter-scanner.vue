@@ -255,7 +255,7 @@ export default {
     },
     async redeem() {
       let puzzles = [...new Set(this.puzzles)]
-      if (puzzles.length == 27) {
+      // if (puzzles.length == 27) {
         this.loading = true
         try {
           await fetch(`https://sitcon.opass.app/event/puzzle/revoke?token=${this.token1}`)
@@ -272,11 +272,11 @@ export default {
         this.redeemStatus = '兌換成功'
         this.redeemIcon = [`bx`, `bxs-check-circle`]
         this.redeemModal = true
-      } else {
-        this.redeemStatus = `碎片不足(${puzzles.length}/27)`
-        this.redeemIcon = [`bx`, `bx-sad`]
-        this.redeemModal = true
-      }
+      // } else {
+      //   this.redeemStatus = `碎片不足(${puzzles.length}/27)`
+      //   this.redeemIcon = [`bx`, `bx-sad`]
+      //   this.redeemModal = true
+      // }
       this.reset()
     },
     async checkInvalid(token) {
